@@ -32,7 +32,7 @@ public class Main {
         boolean everythingWentFine = true;
         String computerChoice = getComputerChoice();
         String playerChoice = playerInput;
-        System.out.println("player: " + playerChoice + ", computer: " + computerChoice);
+
         switch (computerChoice) {
             case ("rock"):
                 switch (playerChoice) {
@@ -51,6 +51,7 @@ public class Main {
                     default:
                         System.err.println("error:invalid input!");
                         everythingWentFine = false;
+                        break;
                 }
                 break;
             case ("paper"):
@@ -70,6 +71,7 @@ public class Main {
                     default:
                         System.err.println("error:invalid input!");
                         everythingWentFine = false;
+                        break;
                 }
                 break;
             case ("scissors"):
@@ -89,13 +91,16 @@ public class Main {
                     default:
                         System.err.println("error:invalid input!");
                         everythingWentFine = false;
+                        break;
                 }
                 break;
             default:
                 System.err.println("error:u have a terribly crusty bobasti computer");
                 everythingWentFine = false;
+                break;
 
         }
+        System.out.println("player: " + playerChoice + ", computer: " + computerChoice);
         if(everythingWentFine) {
             System.out.println("Times player won: " + numPlayerWin);
             System.out.println("times computer won: " + numComputerWin);
