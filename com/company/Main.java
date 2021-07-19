@@ -1,9 +1,11 @@
 package com.company;
+import java.util.Scanner;
 public class Main {
     public static int numPlayerWin=0;
     public static int numTie=0;
     public static int numComputerWin=0;
     public static String getComputerChoice() {
+
         int min = 0;
         int max = 2;
         double computerChoice = Math.floor(Math.random() * (max - min + 1) + min);
@@ -19,7 +21,7 @@ public class Main {
                 computerOutput = "scissors";
                 break;
             default:
-                computerOutput = "error";
+                System.err.println("your computer is crusty");
                 break;
 
         }
@@ -27,6 +29,7 @@ public class Main {
     }
 
     public static void playGame(String playerInput) {
+        boolean everythingWentFine = true;
         String computerChoice = getComputerChoice();
         String playerChoice = playerInput;
         System.out.println("player: " + playerChoice + ", computer: " + computerChoice);
@@ -46,7 +49,8 @@ public class Main {
                         numComputerWin++;
                         break;
                     default:
-                        System.out.println("error");
+                        System.err.println("error:invalid input!");
+                        everythingWentFine = false;
                 }
                 break;
             case ("paper"):
@@ -64,7 +68,8 @@ public class Main {
                         numPlayerWin++;
                         break;
                     default:
-                        System.out.println("error");
+                        System.err.println("error:invalid input!");
+                        everythingWentFine = false;
                 }
                 break;
             case ("scissors"):
@@ -82,25 +87,33 @@ public class Main {
                         numTie++;
                         break;
                     default:
-                        System.out.println("error");
+                        System.err.println("error:invalid input!");
+                        everythingWentFine = false;
                 }
                 break;
             default:
-                System.out.println("error");
+                System.err.println("error:u have a terribly crusty bobasti computer");
+                everythingWentFine = false;
 
         }
-        System.out.println("Times player won: "+numPlayerWin);
-        System.out.println("times computer won: "+numComputerWin);
-        System.out.println("number of ties: "+numTie);
+        if(everythingWentFine) {
+            System.out.println("Times player won: " + numPlayerWin);
+            System.out.println("times computer won: " + numComputerWin);
+            System.out.println("number of ties: " + numTie);
+        }
     }
 
     public static void main(String[] args) {
 
-        for(int i=0;i<100001;i++) {
+       Scanner myScanner = new Scanner(System.in);
+       for(int i = 0; i<100; i++){
+           boolean exit = false;
+           System.out.println("Please enter rock, paper or scissors.");
+           String playerInput = myScanner.nextLine();
+           playGame(playerInput);
 
-            playGame(getComputerChoice());
-        }
-
+       }
+       System.out.println("Geez, take a pause, drink some water, Stop playing this simple game!");
 
     }
 }
